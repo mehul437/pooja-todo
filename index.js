@@ -11,7 +11,9 @@ function create() {
 
     let tripp = document.createElement("p")
     tripp.setAttribute("class", "trip")
-    tripp.innerHTML = val
+    tripp.setAttribute("id",val+"trip")
+    tripp.setAttribute("onclick","insider(this.getAttribute('id'))")
+    tripp.innerText = val
 
     let line = document.createElement("hr")
 
@@ -40,6 +42,33 @@ function create() {
     list.appendChild(line)
     list.appendChild(databo)
     document.getElementById("innermain").appendChild(list)
+
+}
+function insider(dat){
+     let main=document.getElementById("main")
+    main.style.display="none"
+    var po=document.getElementById(dat)
+    var re=po.parentNode
+    var box=re.id
+    var boxmain=document.getElementById(box)
+    var back=document.createElement("span")
+    back.setAttribute('class','backer')
+    back.setAttribute("onclick","home(this.getAttribute('class'))")
+    back.innerHTML = '<i class="fas fa-arrow-alt-circle-left aria-hidden="true""></i>'+'back'
+    
+    document.getElementById("separatemain").appendChild(back)
+    document.getElementById("separatemain").appendChild(boxmain)
+}
+function home(fil){
+    var past=document.getElementsByClassName(fil)
+    var mi=past[0].parentNode
+    var about=mi.id
+    var node=document.getElementById(about)
+    var bb=node.lastChild
+        node.removeChild(node.firstChild)
+    var rev=document.getElementById("main")
+    rev.style.display="block"
+    document.getElementById("innermain").appendChild(bb)
 
 }
 function obtainvalue() {
